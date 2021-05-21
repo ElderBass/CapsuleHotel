@@ -91,6 +91,7 @@ public class CapsuleHotel {
             System.exit(0);
         } else {
             System.out.println("*Sigh* I truly wish you would make up your mind, sir. Back to the main menu it is I guess...");
+            System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
             mainMenu(arr);
         }
     }
@@ -102,27 +103,67 @@ public class CapsuleHotel {
         int capsuleNumber;
         while(!isValid) {
             System.out.print("Enter a Capsule # around which to narrow your results: ");
-            while(!console.hasNextInt()) {
+            while (!console.hasNextInt()) {
                 System.out.println("NUMBER, sir, Capsule NUMBER. Oh how you torment me so...");
                 System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
                 console.next();
             }
             capsuleNumber = console.nextInt();
-            System.out.println("Tranquility Base Hotel & Casino Guest List");
-            System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-            if (capsuleNumber - 5 < 1) {
-                // do loop here
-            }
-            for (int i = 0; i < arr.length; i++) {
-                if (arr[i] == null) {
-                    System.out.println("Capsule #" + (i+1) + ": [Vacant]");
-                } else {
-                    System.out.println("Capsule #" + (i+1) + ": " + arr[i]);
+
+            System.out.println("Processing");
+            System.out.println(".");
+            System.out.println(".");
+            System.out.println(".");
+
+            if (capsuleNumber < 1 || capsuleNumber > arr.length) {
+                System.out.println("You truly are sadistic, sir. I'm glad that my suffering amuses you so.");
+                System.out.println("That capsule is outside of range. Please try again or just put me out of my misery.");
+                System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+                viewGuests(arr);
+            } else {
+                System.out.println("Tranquility Base Hotel & Casino Guest List");
+                System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+                if ((capsuleNumber - 5 < 1) && (capsuleNumber + 5 <= arr.length)) {
+                    // do loop here
+                    for (int i = 0; i < capsuleNumber + 5; i++) {
+                        if (arr[i] == null) {
+                            System.out.println("Capsule #" + (i + 1) + ": [Vacant]");
+                        } else {
+                            System.out.println("Capsule #" + (i + 1) + ": " + arr[i]);
+                        }
+                    }
+                    isValid = true;
+                } else if ((capsuleNumber - 5 < 1) && (capsuleNumber + 5 > arr.length)) {
+                    for (int j = 0; j < arr.length; j++) {
+                        if (arr[j] == null) {
+                            System.out.println("Capsule #" + (j + 1) + ": [Vacant]");
+                        } else {
+                            System.out.println("Capsule #" + (j + 1) + ": " + arr[j]);
+                        }
+                    }
+                    isValid = true;
+                } else if ((capsuleNumber - 5 >= 1) && (capsuleNumber + 5 > arr.length)) {
+                    for (int k = capsuleNumber - 6; k < arr.length; k++) {
+                        if (arr[k] == null) {
+                            System.out.println("Capsule #" + (k + 1) + ": [Vacant]");
+                        } else {
+                            System.out.println("Capsule #" + (k + 1) + ": " + arr[k]);
+                        }
+                    }
+                    isValid = true;
+                } else if ((capsuleNumber - 5 >= 1) && (capsuleNumber + 5 <= arr.length)) {
+                    for (int l = capsuleNumber - 6; l < capsuleNumber + 5; l++) {
+                        if (arr[l] == null) {
+                            System.out.println("Capsule #" + (l + 1) + ": [Vacant]");
+                        } else {
+                            System.out.println("Capsule #" + (l + 1) + ": " + arr[l]);
+                        }
+                    }
+                    isValid = true;
                 }
             }
-            System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
         }
-
+        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
         mainMenu(arr);
     }
     public static void handleGuestCheckout(String[] arr) {
@@ -194,25 +235,32 @@ public class CapsuleHotel {
 
         while (!isValid) {
             System.out.print("Enter the capsule number in which " + name + " will stay. [1 - " + arr.length + "]: ");
-            int capsule = Integer.parseInt(console.nextLine());
+            int capsuleNumber;
 
+            while(!console.hasNextInt()) {
+                System.out.println("Another case of the D-Ts, sir? Sorry to hear that. Please gather yourself and enter an actual number this time.");
+                System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+                System.out.print("Enter the capsule number in which " + name + " will stay. [1 - " + arr.length + "]: ");
+                console.next();
+            }
+            capsuleNumber = console.nextInt();
             System.out.println("Checking availability");
             System.out.println(".");
             System.out.println(".");
             System.out.println(".");
 
-            if (arr[capsule - 1] == null) {
-                System.out.println("Superb, that capsule is indeed unoccupied. Booking " + name + " to capsule #" + capsule + " now.");
+            if (arr[capsuleNumber - 1] == null) {
+                System.out.println("Superb, that capsule is indeed unoccupied. Booking " + name + " to capsule #" + capsuleNumber + " now.");
                 System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-                arr[capsule - 1] = name;
+                arr[capsuleNumber - 1] = name;
                 isValid = true;
-            } else if (arr[capsule - 1].equals(name)) {
+            } else if (arr[capsuleNumber - 1].equals(name)) {
                 System.out.println("Ummm...this is awkward but that room is already occupied by " + name + ". Please try again.");
                 System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-            } else if (capsule < 1 || capsule > arr.length) {
+            } else if (capsuleNumber < 1 || capsuleNumber > arr.length) {
                 System.out.println("Sir, have you been drinking again? That is not a valid capsule number.\nLet's try again, shall we?");
                 System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-            } else if (arr[capsule - 1] != null) {
+            } else if (arr[capsuleNumber - 1] != null) {
                 System.out.println("Ugh. Sir. You've already booked that room. You aren't very good at this, are you? Try again.");
                 System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
             }
