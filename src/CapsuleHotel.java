@@ -50,7 +50,7 @@ public class CapsuleHotel {
         int menuChoice;
 
         while (!isValid) {
-            System.out.println(menu);
+            System.out.print(menu);
             while (!console.hasNextInt()) {
                 System.out.println("I said use the NUMBER pad, sir. Are you not wearing your reading glasses or are you just especially dense today? Try again.");
                 System.out.println();
@@ -66,18 +66,22 @@ public class CapsuleHotel {
             } else {
                 switch (menuChoice) {
                     case 1:
+                        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
                         handleGuestCheckin(arr);
                         isValid = true;
                         break;
                     case 2:
+                        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
                         handleGuestCheckout(arr);
                         isValid = true;
                         break;
                     case 3:
+                        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
                         viewGuests(arr);
                         isValid = true;
                         break;
                     case 4:
+                        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
                         handleExitProgram(arr);
                         isValid = true;
                         break;
