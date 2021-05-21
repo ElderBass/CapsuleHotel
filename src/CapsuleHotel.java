@@ -35,7 +35,7 @@ public class CapsuleHotel {
 
     }
     public static void mainMenu(String[] arr) {
-        //TODO ensure that the user's selection is actually a number from 1 to 4!
+
         Scanner console = new Scanner(System.in);
         String menu = "Tranquility Base Hotel & Casino Administrative Menu.\n" +
                 "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ \n" +
@@ -253,15 +253,14 @@ public class CapsuleHotel {
             System.out.println(".");
             System.out.println(".");
             System.out.println(".");
-
-            if (arr[capsuleNumber - 1] == null) {
+            if (capsuleNumber < 1 || capsuleNumber > arr.length) {
+                System.out.println("Sir, have you been drinking again? That is not a valid capsule number.\nLet's try again, shall we?");
+                System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+            } else if (arr[capsuleNumber - 1] == null) {
                 System.out.println("Superb, that capsule is indeed unoccupied. Booking " + name + " to capsule #" + capsuleNumber + " now.");
                 System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
                 arr[capsuleNumber - 1] = name;
                 isValid = true;
-            } else if (capsuleNumber < 1 || capsuleNumber > arr.length) {
-                System.out.println("Sir, have you been drinking again? That is not a valid capsule number.\nLet's try again, shall we?");
-                System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
             } else if (arr[capsuleNumber - 1] != null) {
                 System.out.println("Ugh. Sir. You've already booked that room. You aren't very good at this, are you? Try again.");
                 System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
