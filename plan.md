@@ -19,6 +19,18 @@
 * Once user successfully sets a number, use this input to create a new array of length "input"
   * Display a relevant message, then launch the mainMenu() method, passing in the newly created array as an arg
 
+### mainMenu()
+* Start by displaying a string that comprises the menu of options
+* Have a message below this message instructing the user on how to proceed
+* Prompt the user to input a number that corresponds to a menu option
+  * Validation Needed:
+      * Ensure input is not empty
+      * Ensure input is in fact an integer and not a string or something else
+      * Check to see that the input is indeed a number between 1 and 4 (for the 4 menu options)
+  * Once validated, pass this input into a switch statement
+    * Each case corresponds to a menu option and runs the relevant method, passing in the guest array as an arg
+* Main menu will be called at the end of all the other methods, passing in the array each time
+
 ### handleGuestCheckin()
 * Prompt for name, validate input
     * Validation Needed:
@@ -59,14 +71,16 @@
 * Fairly simple, just confirm that admin does indeed want to exit with a prompt 
 * If prompt answer = "y" --> System.exit(0)
 * If prompt answer = "n" --> run main menu method again
-      
-* Finally write the Main Menu method
-    * Intro message welcoming admin to main menu 
-    * Display options and instructions on how to choose one --> prompt admin for number choice
-    * Switch statement based on number choice --> directing to one of the above methods 
-    * To stay in this main menu, all of the above methods will end by running the main menu method 
-        * Check In/Check Out will alter the array in their way, then run "main menu" with the updated guest array as an argument, so the array is always up to date 
-      
-* Still need a "start program" method to print a welcome message and prompt admin for a number of capsules 
-    * Once number is validated --> create a new array with a length of the admin's input
-    * Pass this new array into main menu method and run it
+
+## Quick Bit About Managing "State"
+* I am familiar with the concept of state having created apps in React before, but seeing as we haven't
+explicitly learned state management in Java yet, to track the list of guests, I plan on passing it in as an argument to every function that will need to access and/or amend it. Thus, it will just keep getting passed around and altered when needed.
+  
+* We have not discussed classes much and constructors/fields not at all, but I believe in an ideal Java world,
+we would create/construct a guest array field for our Hotel class, using a getter to loop through it and print it, and a setter every time we needed to add or remove guests.
+  
+## Stretch Goals
+* I am going to look into implementing the following extra features once I know my app is working properly:
+1) After a guest checks out of a room, require that housecleaning clean the room before the room can be occupied again
+2) Add support for multiple hotels
+3) Refactor the application to use classes and collections

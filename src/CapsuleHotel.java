@@ -35,6 +35,7 @@ public class CapsuleHotel {
 
     }
     public static void mainMenu(String[] arr) {
+        //TODO ensure that the user's selection is actually a number from 1 to 4!
         Scanner console = new Scanner(System.in);
         String menu = "Tranquility Base Hotel & Casino Administrative Menu.\n" +
                 "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ \n" +
