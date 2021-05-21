@@ -1,10 +1,9 @@
 import java.util.Scanner;
 
 public class CapsuleHotel {
+
     public static void main(String[] args) {
-
         hotelProgramInitialization();
-
     }
 
     public static void hotelProgramInitialization() {
@@ -97,7 +96,6 @@ public class CapsuleHotel {
     }
 
     public static void viewGuests(String[] arr) {
-        // TODO fix this to match the requirements listed on LMS
         Scanner console = new Scanner(System.in);
         boolean isValid = false;
         int capsuleNumber;
@@ -254,9 +252,6 @@ public class CapsuleHotel {
                 System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
                 arr[capsuleNumber - 1] = name;
                 isValid = true;
-            } else if (arr[capsuleNumber - 1].equals(name)) {
-                System.out.println("Ummm...this is awkward but that room is already occupied by " + name + ". Please try again.");
-                System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
             } else if (capsuleNumber < 1 || capsuleNumber > arr.length) {
                 System.out.println("Sir, have you been drinking again? That is not a valid capsule number.\nLet's try again, shall we?");
                 System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
