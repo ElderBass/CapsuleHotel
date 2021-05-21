@@ -59,23 +59,29 @@ public class CapsuleHotel {
                 console.next();
             }
             menuChoice = console.nextInt();
-            switch (menuChoice) {
-                case 1:
-                    handleGuestCheckin(arr);
-                    isValid = true;
-                    break;
-                case 2:
-                    handleGuestCheckout(arr);
-                    isValid = true;
-                    break;
-                case 3:
-                    viewGuests(arr);
-                    isValid = true;
-                    break;
-                case 4:
-                    handleExitProgram(arr);
-                    isValid = true;
-                    break;
+            if (menuChoice < 1 || menuChoice > 4) {
+                System.out.println("Dear me, you must be riding the Struggle Shuttle today, sir. You entered an invalid number. Choose again.");
+                System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+                mainMenu(arr);
+            } else {
+                switch (menuChoice) {
+                    case 1:
+                        handleGuestCheckin(arr);
+                        isValid = true;
+                        break;
+                    case 2:
+                        handleGuestCheckout(arr);
+                        isValid = true;
+                        break;
+                    case 3:
+                        viewGuests(arr);
+                        isValid = true;
+                        break;
+                    case 4:
+                        handleExitProgram(arr);
+                        isValid = true;
+                        break;
+                }
             }
         }
     }
