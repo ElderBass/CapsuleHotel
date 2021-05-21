@@ -28,7 +28,7 @@
     * Display options and instructions on how to choose one --> prompt admin for number choice
     * Switch statement based on number choice --> directing to one of the above methods 
     * To stay in this main menu, all of the above methods will end by running the main menu method 
-        *Check In/Check Out will alter the array in their way, the run main menu entering the updated guest array as an argument into the main menu method so it's always up to date 
+        * Check In/Check Out will alter the array in their way, then run "main menu" with the updated guest array as an argument, so the array is always up to date 
       
 * Still need a "start program" method to print a welcome message and prompt admin for a number of capsules 
     * Once number is validated --> create a new array with a length of the admin's input

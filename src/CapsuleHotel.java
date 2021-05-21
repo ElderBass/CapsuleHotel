@@ -10,19 +10,19 @@ public class CapsuleHotel {
     public static void hotelProgramInitialization() {
         System.out.println("Welcome to Tranquility Base Hotel & Casino.");
         System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-        Scanner sc = new Scanner(System.in);
+        Scanner console = new Scanner(System.in);
         int capsuleCount;
         boolean isValid = false;
 
         while (!isValid) {
             System.out.print("Enter the number of capsules available in the hotel: ");
 
-            while (!sc.hasNextInt()) {
+            while (!console.hasNextInt()) {
                 System.out.println("Sir...that is not a number. Are you on another one of your benders? Please try again.");
                 System.out.print("Enter the number of capsules available in the hotel: ");
-                sc.next();
+                console.next();
             }
-            capsuleCount = sc.nextInt();
+            capsuleCount = console.nextInt();
             System.out.println("There are " + capsuleCount + " unoccupied capsules waiting to be booked.");
             System.out.println("Proceeding to Main Menu");
             System.out.println(".");
@@ -36,7 +36,7 @@ public class CapsuleHotel {
 
     }
     public static void mainMenu(String[] arr) {
-        Scanner sc = new Scanner(System.in);
+        Scanner console = new Scanner(System.in);
         String menu = "Tranquility Base Hotel & Casino Administrative Menu.\n" +
                 "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ \n" +
                 "Here are your options, sir, in case you need a reminder: \n" +
@@ -51,14 +51,14 @@ public class CapsuleHotel {
 
         while (!isValid) {
             System.out.println(menu);
-            while (!sc.hasNextInt()) {
+            while (!console.hasNextInt()) {
                 System.out.println("I said use the NUMBER pad, sir. Are you not wearing your reading glasses or are you just especially dense today? Try again.");
                 System.out.println();
                 System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
                 System.out.println(menu);
-                sc.next();
+                console.next();
             }
-            menuChoice = sc.nextInt();
+            menuChoice = console.nextInt();
             switch (menuChoice) {
                 case 1:
                     handleGuestCheckin(arr);
@@ -81,11 +81,11 @@ public class CapsuleHotel {
     }
 
     public static void handleExitProgram(String[] arr) {
-        Scanner sc = new Scanner(System.in);
+        Scanner console = new Scanner(System.in);
         System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
         System.out.println("Are you REALLY calling it quits already? And you're getting paid how much...?");
         System.out.println("[Please enter Y to exit or N to return to main menu]");
-        String choice = sc.nextLine();
+        String choice = console.nextLine();
         if (choice.equalsIgnoreCase("y")) {
             System.out.println("Exiting Program. Have a nice day, sir :)");
             System.exit(0);
@@ -97,25 +97,40 @@ public class CapsuleHotel {
 
     public static void viewGuests(String[] arr) {
         // TODO fix this to match the requirements listed on LMS
-        System.out.println("Tranquility Base Hotel & Casino Guest List");
-        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-        for (int i = 0; i < arr.length; i++) {
-            if (arr[i] == null) {
-                System.out.println("Capsule #" + (i+1) + ": [Vacant]");
-            } else {
-                System.out.println("Capsule #" + (i+1) + ": " + arr[i]);
+        Scanner console = new Scanner(System.in);
+        boolean isValid = false;
+        int capsuleNumber;
+        while(!isValid) {
+            System.out.print("Enter a Capsule # around which to narrow your results: ");
+            while(!console.hasNextInt()) {
+                System.out.println("NUMBER, sir, Capsule NUMBER. Oh how you torment me so...");
+                System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+                console.next();
             }
-         }
-        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+            capsuleNumber = console.nextInt();
+            System.out.println("Tranquility Base Hotel & Casino Guest List");
+            System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+            if (capsuleNumber - 5 < 1) {
+                // do loop here
+            }
+            for (int i = 0; i < arr.length; i++) {
+                if (arr[i] == null) {
+                    System.out.println("Capsule #" + (i+1) + ": [Vacant]");
+                } else {
+                    System.out.println("Capsule #" + (i+1) + ": " + arr[i]);
+                }
+            }
+            System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+        }
+
         mainMenu(arr);
     }
     public static void handleGuestCheckout(String[] arr) {
-        Scanner sc = new Scanner(System.in);
-        boolean isValid = false;
+        Scanner console = new Scanner(System.in);
 
         System.out.println("Welcome to the guest check-out menu.");
         System.out.print("Please enter the name of the guest you wish to check out: ");
-        String name = sc.nextLine();
+        String name = console.nextLine();
 
         System.out.println("Processing");
         System.out.println(".");
@@ -133,6 +148,7 @@ public class CapsuleHotel {
                     continue;
                 } else if (arr[i].equals(name)) {
                     System.out.println("Excellent. " + name + " has been checked out of Tranquility Base Hotel & Casino.");
+                    System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
                     arr[i] = null;
                     isCheckedIn = true;
                 }
@@ -146,12 +162,12 @@ public class CapsuleHotel {
         mainMenu(arr);
     }
     public static void handleGuestCheckin(String[] arr) {
-        Scanner sc = new Scanner(System.in);
+        Scanner console = new Scanner(System.in);
         boolean isValid = false;
 
         System.out.println("Welcome to the guest check-in menu.");
         System.out.print("Please enter the guest's name: ");
-        String name = sc.nextLine();
+        String name = console.nextLine();
 
         System.out.println("Processing");
         System.out.println(".");
@@ -175,10 +191,10 @@ public class CapsuleHotel {
             }
             System.out.println("Splendid. " + name + " is not currently in our database. Let's find them a home, shall we?");
         }
-        // TODO need to ensure that a guest can't get checked into a room that's already occupied
+
         while (!isValid) {
             System.out.print("Enter the capsule number in which " + name + " will stay. [1 - " + arr.length + "]: ");
-            int capsule = Integer.parseInt(sc.nextLine());
+            int capsule = Integer.parseInt(console.nextLine());
 
             System.out.println("Checking availability");
             System.out.println(".");
